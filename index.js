@@ -2,6 +2,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const util = require('util');
+const Employee = require('./lib/Employee.js');
 
 const questions = [
     {
@@ -10,6 +11,11 @@ const questions = [
         message: 'What is your role?',
         choices: ['Manager', 'Engineer', 'Intern']
 
+    },
+    {
+        type: 'input',
+        name: 'role',
+
     }
 ];
 
@@ -17,7 +23,8 @@ const questions = [
 function init() {
     inquirer.prompt(questions).then((data) => {
         console.log(data)
-        fs.writeFile('./dist/index.html', data => { console.log('Hey.....'); }).catch((err) => {
+        // Write data from SELECTED CLASS to the html page
+        fs.writeFile('./dist/index.html', getRole(data)).catch((err) => {
             if (err) {
                 console.log(err);
             }
