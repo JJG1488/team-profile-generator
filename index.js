@@ -51,15 +51,15 @@ function addTeamMember() {
 
             if (role === 'Engineer') {
 
-                roleInfo = 'GitHub username';
+                roleInfo = 'gitHub';
 
             } else if (role === 'Intern') {
 
-                roleInfo = 'school name';
+                roleInfo = 'school';
 
             } else {
 
-                roleInfo = 'office phone number'
+                roleInfo = 'officeNumber'
 
             }
 
@@ -90,10 +90,12 @@ function addTeamMember() {
 
                         newMember = new Intern(name, id, email, roleInfo);
 
-                    } else {
+                    } else if (role === 'Manager') {
 
                         newMember = new Manager(name, id, email, roleInfo);
 
+                    } else {
+                        console.log('nothing here bud');
                     }
 
                     employees.push(newMember);
@@ -141,7 +143,7 @@ function generateHTML() {
             <div class="row">`;
 
     // asynchronously writing data to the index.html file, replacing it if it already exists
-    fs.writeFile('./dist/index.html', html, function (err) {
+    fs.writeFile('./index.html', html, function (err) {
 
         if (err) {
 
@@ -169,24 +171,27 @@ function createNewMember(newMember) {
 
         let data = "";
 
-        if (role === "Engineer") {
+                if (role === "Engineer") {
 
-            const gitHub = newMember.getGithub();
+                    const gitHub = newMember.getGithub();
+                    console.log('engineer');
 
-            data = `<div class="col-6">
-            <div class="card mx-auto mb-3" style="width: 18rem">
-            <h5 class="card-header">${name}<br /><br />Engineer</h5>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">ID: ${id}</li>
-                <li class="list-group-item">Email Address: ${email}</li>
-                <li class="list-group-item">GitHub: ${gitHub}</li>
-            </ul>
-            </div>
-        </div>`;
+                    data = `<div class="col-6">
+                    <div class="card mx-auto mb-3" style="width: 18rem">
+                    <h5 class="card-header">${name}<br /><br />Engineer</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">ID: ${id}</li>
+                        <li class="list-group-item">Email Address: ${email}</li>
+                        <li class="list-group-item">GitHub: ${gitHub}</li>
+                    </ul>
+                    </div>
+                </div>`;
 
-        } else if (role === "Manager") {
+                } else if (role === "Manager") {
 
-            const officeNumber = newMember.getOfficeNumber();
+                    const officeNumber = newMember.getOfficeNumber();
+                    console.log(role);
+                    console.log(officeNumber);
 
             data = `<div class="col-6">
             <div class="card mx-auto mb-3" style="width: 18rem">
@@ -197,28 +202,30 @@ function createNewMember(newMember) {
                 <li class="list-group-item">Office Phone: ${officeNumber}</li>
             </ul>
             </div>
-        </div>`
+        </div>`;
 
-        } else {
+                } else {
 
-            const school = newMember.getSchool();
+                    const school = newMember.getSchool();
+                    console.log(school);
+                    console.log('Intern');
 
-            data = `<div class="col-6">
-            <div class="card mx-auto mb-3" style="width: 18rem">
-            <h5 class="card-header">${name}<br /><br />Intern</h5>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">ID: ${id}</li>
-                <li class="list-group-item">Email Address: ${email}</li>
-                <li class="list-group-item">School: ${school}</li>
-            </ul>
-            </div>
-        </div>`
+                    data = `<div class="col-6">
+                    <div class="card mx-auto mb-3" style="width: 18rem">
+                    <h5 class="card-header">${name}<br /><br />Intern</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">ID: ${id}</li>
+                        <li class="list-group-item">Email Address: ${email}</li>
+                        <li class="list-group-item">School: ${school}</li>
+                    </ul>
+                    </div>
+                </div>`;
 
-        }
+                }
 
         console.log("adding team member");
         // asynchronously appending this file, creating it if it doesn't exist
-        fs.appendFile("./dist/index.html", data, function (err) {
+        fs.appendFile("./index.html", data, function (err) {
 
             if (err) {
 
@@ -243,8 +250,8 @@ function ClosingHtmlTags() {
 </body>
 </html>`;
 
-// asynchronously appending this file, creating it if it doesn't exist
-    fs.appendFile("./dist/index.html", html, function (err) {
+    // asynchronously appending this file, creating it if it doesn't exist
+    fs.appendFile("./index.html", html, function (err) {
 
         if (err) {
 
