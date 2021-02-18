@@ -8,11 +8,11 @@ This application displays a command line application that takes in information a
 
 # Preview
 
-![Preview](./assests/images/preview.png)
+![Preview](./assests/images/preview1.png)
 
 ![Link] (https://jjg1488.github.io/team-profile-generator/)
 
-![Video] (https://drive.google.com/file/d/1RetoKzgL237V1rrTqsFvVbTJtNt7Wc64/view)
+![Video] (https://drive.google.com/file/d/1a1Ox4cctp89tlPeOmlgL1lZV1-7hkrDv/view)
 
 ---
 
@@ -36,7 +36,7 @@ This application displays a command line application that takes in information a
 
 # Installation
 
-Clone the repository, open the application in an IDE, npm init, then npm install. index.js will launch the application once dependencies are installed.
+Clone the repository, open the application in an IDE, npm init, then npm install app.js will launch the application once dependencies are installed.
 
 ---
 
